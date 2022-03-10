@@ -15,11 +15,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mSensorManager;
+
     private TextView mTextLightSensor;
     private TextView mTextProximitySensor;
+    private TextView mTextGyroscopeSensor;
 
     private Sensor mLightSensor;
     private Sensor mProximitySensor;
+    private Sensor mGyroscopeSensor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +37,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mTextLightSensor = findViewById(R.id.light_label);
         mTextProximitySensor = findViewById(R.id.proximity_label);
+        mTextGyroscopeSensor = findViewById(R.id.gyroscope_label);
 
         mLightSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mGyroscopeSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
     }
 
@@ -49,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
         if (mProximitySensor !=null){
             mSensorManager.registerListener(this, mProximitySensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+        if (mGyroscopeSensor !=null){
+            mSensorManager.registerListener(this, mGyroscopeSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
@@ -68,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 break;
             case Sensor.TYPE_PROXIMITY:
                 mTextProximitySensor.setText(getResources().getString(R.string.proximity_label,result));
+                break;
+            case Sensor.TYPE_GYROSCOPE:
+                mTextGyroscopeSensor.setText(getResources().getString(R.string.gyroscope_label,result));
                 break;
             default:
                 break;

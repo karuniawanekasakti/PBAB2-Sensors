@@ -21,4 +21,10 @@
         android:text="Proximity Sensor : %1$.2f"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gyroscope_label"
+        android:text="Gyroscope Sensor : %1$.2f"
+        />
 </LinearLayout>
